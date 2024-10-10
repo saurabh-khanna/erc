@@ -19,12 +19,36 @@
 \granttypeyear{ERC Consolidator Grant 2025}
 \title{My Amazing Project}
 
+% METADATA FOR PDF
+\hypersetup{
+    pdftitle={\pdftitle},
+    pdfauthor={\pdfauthor},
+}
 
+% BIBLIOGRAPHY SETUP 
+% Read through the comments and uncomment what you want, comment what you don't want.
+\def\bibliographyfile{bibliography}  % Name of the bibliography file
+
+% Author year citation style
+% \usepackage[authoryear]{natbib}
+% \bibliographystyle{erc_author_year}
+
+% Square bracket / number citation style
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{erc_number_alpha}  % Use this file style to sort references alphabetically
+% \bibliographystyle{erc_number_app}  % Use this file style to sort references by appearance
+
+% The following two lines are helpful to switch from number to author-year citation style
+\AtBeginDocument{\renewcommand\citep{\cite}}  % uses all \citep as \cite commands
+\AtBeginDocument{\renewcommand\citet{\cite}}  % uses all \citet as \cite commands
+
+
+% BEGIN DOCUMENT
 \begin{document}
 \maketitle
 
 \begin{b2-sec-a}
-HERE GOES B2 SECTION A
+    HERE GOES B2 SECTION A. To start this out in a good way, here's a cool citation: \citet{Mayer2010}. And if you are interested in Astrophysics, you must read \citet{b2fh}.
 \end{b2-sec-a}
 
 \begin{b2-sec-b}
@@ -34,9 +58,10 @@ HERE GOES B2 SECTION B
 
 \instruction{\vspace{1cm}}
 
-\instruction{\textbf{Do NOT include any description of resources or budget table here (Part B2). The Resources section and the detailed budget table are part of the online submission form (Part A, Section 3 - Budget) which will be extracted and provided to the peer reviewers. If additional documents are uploaded in the submission system as separate attachments, the peer reviewers will not have access to them.}}
+\instruction{\textbf{Do NOT include any description of resources or budget table here (Part B2). The Resources section and the detailed budget table are part of the online submission form (Part A, Section 3 - Budget) which will be extracted and provided to the peer reviewers. If additional documents are uploaded inkthe submission system as separate attachments, the peer reviewers will not have access to them.}}
 
-
+\newpage
+\bibliography{\bibliographyfile}
 
 \begin{b2-app-funding}
 \section*{Current research grants (Please indicate "No funding" when applicable):}

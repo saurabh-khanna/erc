@@ -19,11 +19,27 @@
 \granttypeyear{ERC Consolidator Grant 2025}
 \title{My Amazing Project}
 
+% BIBLIOGRAPHY SETUP 
+% Read through the comments and uncomment what you want, comment what you don't want.
+\def\bibliographyfile{bibliography}  % Name of the bibliography file
 
+% Author year citation style
+% \usepackage[authoryear]{natbib}
+% \bibliographystyle{erc_author_year}
+
+% Square bracket / number citation style
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{erc_number_alpha}  % Use this file style to sort references alphabetically
+% \bibliographystyle{erc_number_app}  % Use this file style to sort references by appearance
+
+% The following two lines are helpful to switch from number to author-year citation style
+\AtBeginDocument{\renewcommand\citep{\cite}}  % uses all \citep as \cite commands
+\AtBeginDocument{\renewcommand\citet{\cite}}  % uses all \citet as \cite commands
+
+
+% BEGIN DOCUMENT
 \begin{document}
 \maketitle
-
-
 
 \begin{abstract}
 HERE GOES YOUR PROPOSAL SUMMARY.
@@ -39,6 +55,11 @@ HERE GOES B1 SECTION A
 Above tile is a \verb=\section{...}= command. You can also use subsections and subsubsections. They are all numbered\dots
 
 All sections, subsections, and subsubsections are formatted exactly the same, only the numbering changes. If you want an unnumbered style, use the regular \verb=\section*{...}= commands.
+If you want them to show up in the PDF bookmarks list, add them as following:
+\begin{verbatim}
+    \pdfbookmark[1]{TITLE}{unnumbered}
+    \section*{TITLE}
+\end{verbatim}
 
 \subsection{Subsection}
 
@@ -54,11 +75,15 @@ And here's an unnumbered subsubsection.
 One way to Save additional space is by using a paragraph as following:
 
 \paragraph{Aim 1:} This paragraph describes my first aim. It is going to be several lines long, but has this nice and fancy bold face title.
+It is sometimes useful to have some citations, e.g., \citet{Mayer2010} or \citet{b2fh}.
 \end{b1-sec-a}
+
+\newpage
+\bibliography{\bibliographyfile}
 
 \begin{b1-sec-b}
 
-
+\pdfbookmark[1]{Personal Details}{unnumbered}
 \cvsection*{Personal Details}
 
 \instruction{Provide your personal details, your education and key qualifications, current position(s) and relevant previous positions you have held.}
@@ -95,22 +120,25 @@ URL for web site:
 \cvline{Name of Faculty/ Department, Name of University/ Institution, Country}
 
 
+\pdfbookmark[1]{Research Achievements and Peer Recognition}{unnumbered}
 \cvsection*{Research Achievements and Peer Recognition}
 
-\cvsubsection*{Research achievements}
+\pdfbookmark[1]{Research achievements}{unnumbered}
+\cvsubsection{Research achievements}
 
 \instruction{Provide a list of up to ten research outputs that demonstrate how you have advanced knowledge in your field with an emphasis on more recent achievements, such as publications, articles deposited in a publicly available preprint server, books, book chapters, conference proceedings, data sets, software, patents, licenses, standards, start-up businesses or any other research outputs you deem relevant in relation to your research field and your project.
 
 You may include a short, factual explanation of the significance of the selected outputs, your role in producing each of them, and how they demonstrate your capacity to successfully carry out your proposed project.}
 
 
-\cvsubsection*{Peer recognition}
+\pdfbookmark[1]{Peer recognition}{unnumbered}
+\cvsubsection{Peer recognition}
 
 \instruction{Provide a list of selected examples of significant recognition by your peers if applicable, such as prizes, awards, fellowships, elected academy memberships, invited presentations to major conferences or any other examples of significant recognition you deem relevant in relation to your research field and project.
 
 You may include a short explanation of the significance of the listed examples.}
 
-
+\pdfbookmark[1]{Additional Information}{unnumbered}
 \cvsection*{Additional Information}
 
 \instruction{You may provide relevant additional information on your research career to provide context to the evaluation panels when assessing your research achievements and peer recognition as described above.}

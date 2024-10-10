@@ -14,12 +14,31 @@
 % Formatting
 \RequirePackage{titlesec}
 \RequirePackage[linewidth=1pt]{mdframed}
+\usepackage[font={sl},format=plain,labelfont=bf]{caption}
 
 % Header and Footer
 \RequirePackage{fancyhdr}
 
-% References
-\RequirePackage{natbib}
+% Figures, pdf options
+\usepackage[pdftex]{graphicx}
+\usepackage{wrapfig,rotating,subcaption}
+\usepackage{booktabs}
+\usepackage[]{pdfpages} %for including full pdf pages
+\usepackage[pdftex,
+    bookmarks, 
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    filecolor=black,
+    urlcolor=black,
+    anchorcolor=black,
+    menucolor=black,
+    breaklinks=true,
+    pageanchor=true, %for jumping to a page
+    plainpages=false,
+    pdfpagelabels=true]{hyperref}
 
 % Color
 \RequirePackage[dvipsnames,table]{xcolor}
@@ -28,14 +47,19 @@
 \RequirePackage{tabularx}
 \RequirePackage{array}
 \RequirePackage{calc}
+\usepackage{longtable,tabulary,multirow,lscape}
 
 % Packages for CV entries
 \RequirePackage{chngcntr}
 \RequirePackage{tabto}
 
+% Math
+\usepackage{amsmath,amssymb,amsthm,units,unitsdef}
+
 % Various
-\RequirePackage{pdfpages}
+\RequirePackage{ifpdf}
 \RequirePackage{versions}
+\usepackage{float,wasysym,amsfonts,multirow,colortbl}
 
 \newif\ifercformatting@BOne
 \newif\ifercformatting@BTwo
@@ -169,6 +193,13 @@
 	}
 \fi
 
+% PDF options
+
+\pdfcompresslevel=9
+\pdfoutput=1
+\DeclareGraphicsExtensions{.pdf,.png}
+\def\pdfauthor{\@author}
+\def\pdftitle{\@title}
 
 % INSTRUCTION STUFF
 \ifercformatting@showinstructions
@@ -205,7 +236,8 @@
 \titleformat{\cvsubsection}[hang]
   {\normalfont\bfseries}{\thecvsubsection}{1em}{}
   \titlespacing*{\cvsubsection}{0pt}{*2}{*2}
-  \renewcommand{\thecvsubsection}{\textbullet}
+\renewcommand{\thecvsubsection}{\textbullet}
+\@namedef{toclevel@cvsubsection}{1}
 
 \newcommand{\cventry}[2]{\noindent #1\tabto{3.3cm}#2\par}
 \newcommand{\cvline}[1]{\noindent\tabto{3.3cm}#1\par}
@@ -226,6 +258,7 @@ Please use plain typed text, avoiding formulae and other special characters. The
 % B1 section a
 \newenvironment{b1-sec-a}{
 \ifercformatting@BOne
+    \pdfbookmark[1]{Section a: Extended Synopsis of the scientific proposal}{unnumbered}
     \section*{Section a: Extended Synopsis of the scientific proposal}
     \instruction{The Extended Synopsis should give a concise presentation of the scientific proposal, with particular 
     attention to the ground-breaking nature of the research project, which will allow evaluation panels to assess, 
@@ -241,6 +274,7 @@ Please use plain typed text, avoiding formulae and other special characters. The
 \newenvironment{b1-sec-b}{
 \ifercformatting@BOne
     \newpage
+    \pdfbookmark[1]{Section b: Curriculum vitae and Track Record}{unnumbered}
     \section*{Section b: Curriculum vitae and Track Record}
     \instruction{ Maximum 4 pages, you may modify the below template if necessary.}
 \fi
@@ -260,6 +294,7 @@ Please use plain typed text, avoiding formulae and other special characters. The
 
     Instructions for completing Part B2 can be found in the ‘Information for Applicants to the Starting and Consolidator Grant 2025 Calls’.\par\vspace{0.5cm}}
 
+    \pdfbookmark[1]{Section a. State-of-the-art and objectives}{unnumbered}
     \section*{Section a. State-of-the-art and objectives}
 \fi
 }
@@ -267,6 +302,7 @@ Please use plain typed text, avoiding formulae and other special characters. The
 % B2 section b
 \newenvironment{b2-sec-b}{
 \ifercformatting@BTwo
+    \pdfbookmark[1]{Section b. Methodology}{unnumbered}
     \section*{Section b. Methodology}
 \fi
 }
@@ -289,23 +325,7 @@ Please use plain typed text, avoiding formulae and other special characters. The
 \newcommand{\thead}[1]{\multicolumn{1}{>{\centering\arraybackslash}p{0.12\textwidth} |}{\emph{#1}}}
 \newcommand{\theadlst}[1]{\multicolumn{1}{>{\centering\arraybackslash}X |}{\emph{#1}}}
 
-% \def\startfundingtable{
-%     \begin{tabularx}{\textwidth} { 
-%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
-%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
-%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
-%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
-%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
-%      | >{\raggedright\arraybackslash}X | }
-%     \hline
-%     \rowcolor{lightgray}
-%     \theadfst{Project Title} & \thead{Funding Source} & \thead{Amount (Euros)} & \thead{Period} & \thead{Role of PI} & \theadlst{Relation to current ERC proposal} \\
-%     \hline
-% }
-% \def\stopfundingtable{
-%     \hline
-%     \end{tabularx}
-% }
+% Create funding table environment with header and ending of tabularx environment and fixed widths
 \newenvironment{fundingtable}{
     \vspace*{0.3cm}
     \tabularx{\textwidth} { 
