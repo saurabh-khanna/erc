@@ -1,0 +1,69 @@
+\documentclass[11pt, a4paper]{article}
+
+% This is the ERC formatting package. It lives in `ercformatting.sty`.
+\usepackage[b2,showinstructions,times]{ercformatting} % Pass options `b1` or `b2` to compile the tkkkwo versions for submission
+% Options:
+% - `b1` for the first part of the proposal. See B1 template for details.
+% - `b2` for the second part of the proposal. See B2 template for details.
+% - `both` Shows both parts of the proposal. This is useful if you write only one document. 
+%   Detailed instructions on this can be found in Catrin Campbell-Moore's template here: 
+%   https://www.overleaf.com/latex/templates/unofficial-erc-template-using-versions/zyqqjfbckwqc
+% - `showinstructions` to show ERC instructions in the compiled PDF in color. Remove to hide them (or delete them from the template).
+% - `times` to use Adobe Times Roman font. If not passed, LaTeX default font for article class is used.
+
+
+% SET THESE VARIABLES!
+\acronym{ACRONYM}
+\institution{My Uni}
+\author[Last name]{First name Last name}
+\granttypeyear{ERC Consolidator Grant 2025}
+\title{My Amazing Project}
+
+
+\begin{document}
+\maketitle
+
+\begin{b2-sec-a}
+HERE GOES B2 SECTION A
+\end{b2-sec-a}
+
+\begin{b2-sec-b}
+HERE GOES B2 SECTION B
+\end{b2-sec-b}
+
+
+\instruction{\vspace{1cm}}
+
+\instruction{\textbf{Do NOT include any description of resources or budget table here (Part B2). The Resources section and the detailed budget table are part of the online submission form (Part A, Section 3 - Budget) which will be extracted and provided to the peer reviewers. If additional documents are uploaded in the submission system as separate attachments, the peer reviewers will not have access to them.}}
+
+
+
+\begin{b2-app-funding}
+\section*{Current research grants (Please indicate "No funding" when applicable):}
+
+\begin{fundingtable}
+    Life, the Universe, and Everything & 
+    Academy of Irreproducible Science & 
+    27.30 & 
+    2000 -- 2042 & 
+    Co-conspirator & 
+    This very interesting project deals with the feebleness of everything that surrounds us, but is otherwise not related to this proposal.\\
+\hline
+&   &   &   &   &   \\
+\end{fundingtable}
+
+\section*{On-going / submitted grant applications (Please indicate "None" when applicable):}
+
+\begin{fundingtable}
+&   &   &   &   &   \\
+\hline
+&   &   &   &   &   \\
+\end{fundingtable}
+
+
+
+\end{b2-app-funding}
+
+
+
+\end{document}

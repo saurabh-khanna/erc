@@ -1,0 +1,138 @@
+\documentclass[11pt, a4paper]{article}
+
+% This is the ERC formatting package. It lives in `ercformatting.sty`.
+\usepackage[b1,showinstructions,times]{ercformatting} % Pass options `b1` or `b2` to compile the tkkkwo versions for submission
+% Options:
+% - `b1` for the first part of the proposal. See B1 template for details.
+% - `b2` for the second part of the proposal. See B2 template for details.
+% - `both` Shows both parts of the proposal. This is useful if you write only one document. 
+%   Detailed instructions on this can be found in Catrin Campbell-Moore's template here: 
+%   https://www.overleaf.com/latex/templates/unofficial-erc-template-using-versions/zyqqjfbckwqc
+% - `showinstructions` to show ERC instructions in the compiled PDF in color. Remove to hide them (or delete them from the template).
+% - `times` to use Adobe Times Roman font. If not passed, LaTeX default font for article class is used.
+
+
+% SET THESE VARIABLES!
+\acronym{ACRONYM}
+\institution{My Uni}
+\author[Last name]{First name Last name}
+\granttypeyear{ERC Consolidator Grant 2025}
+\title{My Amazing Project}
+
+
+\begin{document}
+\maketitle
+
+
+
+\begin{abstract}
+HERE GOES YOUR PROPOSAL SUMMARY.
+\end{abstract}
+
+
+
+\begin{b1-sec-a}
+HERE GOES B1 SECTION A
+
+\section{Some \LaTeX\ formatting hints}
+
+Above tile is a \verb=\section{...}= command. You can also use subsections and subsubsections. They are all numbered\dots
+
+All sections, subsections, and subsubsections are formatted exactly the same, only the numbering changes. If you want an unnumbered style, use the regular \verb=\section*{...}= commands.
+
+\subsection{Subsection}
+
+This is a subsection 
+
+\subsubsection{Subsubsection}
+
+This is a subsubsection
+
+\subsubsection*{Unnumbered subsubsection}
+And here's an unnumbered subsubsection.
+
+One way to Save additional space is by using a paragraph as following:
+
+\paragraph{Aim 1:} This paragraph describes my first aim. It is going to be several lines long, but has this nice and fancy bold face title.
+\end{b1-sec-a}
+
+\begin{b1-sec-b}
+
+
+\cvsection*{Personal Details}
+
+\instruction{Provide your personal details, your education and key qualifications, current position(s) and relevant previous positions you have held.}
+
+\noindent Family name, First name:\\
+ORCID: \\
+URL for web site: 	
+
+\cvsubsection{Education and key qualifications}
+
+\cventry{DD/MM/YYYY}{PhD}
+\cvline{Name of Faculty/ Department, Name of University/ Institution, Country}
+\cvline{Supervisor: Prof. Name Surname}
+
+\cventry{YYYY}{Master}
+\cvline{Name of Faculty/ Department, Name of University/ Institution, Country}
+
+
+\cvsubsection{Current position(s)}
+
+\cventry{YYYY -- YYYY}{Current position}
+\cvline{Name of Faculty/ Department, Name of University/ Institution, Country}
+
+\cventry{YYYY -- YYYY}{Current position}
+\cvline{Name of Faculty/ Department, Name of University/ Institution, Country}
+
+
+\cvsubsection{Previous position(s)}
+
+\cventry{YYYY -- YYYY}{Previous position}
+\cvline{Name of Faculty/ Department, Name of University/ Institution, Country}
+
+\cventry{YYYY -- YYYY}{Previous position}
+\cvline{Name of Faculty/ Department, Name of University/ Institution, Country}
+
+
+\cvsection*{Research Achievements and Peer Recognition}
+
+\cvsubsection*{Research achievements}
+
+\instruction{Provide a list of up to ten research outputs that demonstrate how you have advanced knowledge in your field with an emphasis on more recent achievements, such as publications, articles deposited in a publicly available preprint server, books, book chapters, conference proceedings, data sets, software, patents, licenses, standards, start-up businesses or any other research outputs you deem relevant in relation to your research field and your project.
+
+You may include a short, factual explanation of the significance of the selected outputs, your role in producing each of them, and how they demonstrate your capacity to successfully carry out your proposed project.}
+
+
+\cvsubsection*{Peer recognition}
+
+\instruction{Provide a list of selected examples of significant recognition by your peers if applicable, such as prizes, awards, fellowships, elected academy memberships, invited presentations to major conferences or any other examples of significant recognition you deem relevant in relation to your research field and project.
+
+You may include a short explanation of the significance of the listed examples.}
+
+
+\cvsection*{Additional Information}
+
+\instruction{You may provide relevant additional information on your research career to provide context to the evaluation panels when assessing your research achievements and peer recognition as described above.}
+
+\cvsubsection{Career breaks, diverse career paths and major life events}
+
+\instruction{You may include a short factual explanation of career breaks or diverse career paths such as secondments, volunteering, part-time work, time spent in different sectors or the effects of major life events such as long term illness as well as the effects of pandemic restrictions on research productivity.}
+
+\cvsubsection{Other contributions to the research community}
+
+\instruction{You may include a list of particularly noteworthy contributions to the research community you have made other than research achievements and peer recognition and a short explanation of these contributions. The purpose of this section is to allow the panels to take a more rounded view of your career and achievements and to ensure that any additional responsibilities, commitments and leadership roles that you have taken on beyond your individual research activities are recognised and taken into account.}
+\end{b1-sec-b}
+
+
+
+
+
+\instruction{\vspace*{0.5cm}}
+
+\instruction{For more information see ‘Information for Applicants to the Starting and Consolidator Grant 2025 Calls’
+
+\textbf{Do NOT split the sections and/or references in Part B1 and do NOT upload them as separate documents. The peer reviewers will only receive one single document for evaluation at Step 1. Hence, Part B1 should contain all elements as explained in this template. If some parts of Part B1 are uploaded in the submission system as separate attachments, the peer reviewers will not have access to them. }
+}
+
+\end{document}

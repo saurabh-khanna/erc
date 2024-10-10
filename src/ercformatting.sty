@@ -1,0 +1,333 @@
+% Mostly taken from Catrin Campbell-Moore's template here: https://www.overleaf.com/latex/templates/unofficial-erc-template-using-versions/zyqqjfbckwqc
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ercformatting}
+
+\PassOptionsToClass{11pt,a4paper}{article}
+
+\RequirePackage[left=2cm,top=1.5cm,bottom=1.5cm,right=2cm,headsep=.45cm,footskip=0.6cm,headheight=13.6pt]{geometry}
+
+% Font Packages
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+
+% Formatting
+\RequirePackage{titlesec}
+\RequirePackage[linewidth=1pt]{mdframed}
+
+% Header and Footer
+\RequirePackage{fancyhdr}
+
+% References
+\RequirePackage{natbib}
+
+% Color
+\RequirePackage[dvipsnames,table]{xcolor}
+
+% Tables
+\RequirePackage{tabularx}
+\RequirePackage{array}
+\RequirePackage{calc}
+
+% Packages for CV entries
+\RequirePackage{chngcntr}
+\RequirePackage{tabto}
+
+% Various
+\RequirePackage{pdfpages}
+\RequirePackage{versions}
+
+\newif\ifercformatting@BOne
+\newif\ifercformatting@BTwo
+\newif\ifercformatting@BBoth
+\newif\ifercformatting@showinstructions
+\newif\ifercformatting@times
+
+\DeclareOption{b1}{\ercformatting@BOnetrue\ercformatting@BTwofalse\ercformatting@BBothfalse}
+\DeclareOption{b2}{\ercformatting@BOnefalse\ercformatting@BTwotrue\ercformatting@BBothfalse}
+\DeclareOption{both}{\ercformatting@BOnefalse\ercformatting@BTwofalse\ercformatting@BBothtrue}
+\DeclareOption{showinstructions}{\ercformatting@showinstructionstrue}
+\DeclareOption{times}{\ercformatting@timestrue}
+
+\ProcessOptions\relax
+
+
+\ifercformatting@BOne
+	\includeversion{b1}
+	\excludeversion{b2}
+\fi
+
+\ifercformatting@BTwo
+	\includeversion{b2}
+	\excludeversion{b1}
+\fi
+
+\ifercformatting@BBoth
+	\renewenvironment{b2}{
+		\begin{color}{blue}
+	}{
+		\end{color}
+	}
+	
+	\renewenvironment{b1}{
+		\begin{color}{violet}
+	}{
+		\end{color}
+	}
+\fi
+
+% HEADER AND FOOTER
+\fancyhf{} % clear all header and footer fields
+
+\pagestyle{fancy}
+
+
+\fancyhead[L]{\textcolor{gray}{\@authorlastname}}
+\fancyfoot[C]{\textcolor{gray}{\thepage}}
+\fancyhead[R]{\textcolor{gray}{{\@acronym}}}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+	
+
+\ifercformatting@BOne
+	\fancyhead[C]{\textcolor{gray}{Part B1}}
+\fi
+
+\ifercformatting@BTwo
+	\fancyhead[C]{\textcolor{gray}{Part B2}}
+\fi
+
+\ifercformatting@BBoth
+	\fancyhead[C]{\textcolor{gray}{Part B1 \& B2}}
+\fi
+
+
+% FONT STUFF
+\ifercformatting@times
+    \RequirePackage{mathptmx}
+\fi
+
+
+% TITLE STUFF
+\RequirePackage{enumitem}
+
+\newcommand{\acronym}[1]{\def\@acronym{#1}}
+\newcommand{\institution}[1]{\def\@institution{#1}}
+\renewcommand{\author}[2][]{\def\@authorlastname{#1}\def\@author{#2}}
+\newcommand{\granttypeyear}[1]{\def\@granttypeyear{#1}}
+
+
+\ifercformatting@BBoth
+	\renewcommand{\maketitle}{
+			{\centering\bfseries\Large
+			\@granttypeyear
+			\par
+			Working on Parts
+			\begin{b1}
+			B1
+			\end{b1} and 
+			\begin{b2}
+			B2
+			\end{b2}
+			\par
+			\normalfont\huge
+			\vspace{.5cm}\@title\par
+			\vspace{.5cm}
+			}
+	}
+\fi
+
+
+\ifercformatting@BOne
+	\renewcommand{\maketitle}{
+        {\vspace*{1cm}\centering\bfseries\large
+		\@granttypeyear\par\Large
+		Research proposal [Part B1]\\
+		\normalfont\huge
+		\vspace{.5cm}\@title\par
+		\vspace{.2cm}\@acronym\par
+		\normalfont\normalsize\raggedright\vspace{1cm}
+        \textbf{Cover page:}
+		\begin{itemize}[noitemsep]
+			\item \textbf{Principal investigator (PI):} \@author
+			\item \textbf{Host institution:} \@institution
+			\item \textbf{Proposal duration:} 60 months%
+		\end{itemize}
+		\par\vspace{1em}
+		}
+	}
+\fi
+
+\ifercformatting@BTwo
+	\renewcommand{\maketitle}{
+		{\centering\bfseries\Large
+		\@granttypeyear\par\Large
+		Part B2\\
+		\vspace{.5cm}
+		}
+	}
+\fi
+
+
+% INSTRUCTION STUFF
+\ifercformatting@showinstructions
+    \newcommand{\instruction}[1]{\color{Bittersweet}{\noindent #1}\color{black}}
+\else
+    \newcommand{\instruction}[1]{}
+\fi
+
+% TITLE STUFF
+
+% Resize Sections, etc. 
+\titleformat{\section}
+{\normalfont\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}
+{0pt}{*1}{*1}
+\titleformat{\subsection}
+{\normalfont\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}
+{0pt}{*1}{*1}
+\titleformat{\subsubsection}
+{\normalfont\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}
+{0pt}{*1}{*1}
+
+% CV sections
+\newcounter{cvsection}
+\titleclass{\cvsection}{straight}[\part]
+\titleformat{\cvsection}[hang]
+  {\normalfont\scshape\bfseries}{\thecvsection}{1em}{}
+  \titlespacing*{\cvsection}{0pt}{*2}{*2}
+\renewcommand{\thecvsection}{\roman{cvsection}}
+\newcounter{cvsubsection}
+\titleclass{\cvsubsection}{straight}[\part]
+\titleformat{\cvsubsection}[hang]
+  {\normalfont\bfseries}{\thecvsubsection}{1em}{}
+  \titlespacing*{\cvsubsection}{0pt}{*2}{*2}
+  \renewcommand{\thecvsubsection}{\textbullet}
+
+\newcommand{\cventry}[2]{\noindent #1\tabto{3.3cm}#2\par}
+\newcommand{\cvline}[1]{\noindent\tabto{3.3cm}#1\par}
+
+
+% ABSTRACT
+
+\renewenvironment{abstract}{\mdframed}{\endmdframed
+\ifercformatting@BOne 
+\instruction{Proposal summary (identical to the abstract from the online proposal submission forms, section 1). 
+The abstract (summary) should, at a glance, provide the reader with a clear understanding of the objectives of the research proposal and how they will be achieved. The abstract will be used as the short description of your research proposal in the evaluation process and in communications to contact in particular potential  independent external experts and/or to inform the Commission and/or the programme management committees and/or relevant national funding agencies. It must therefore be short and precise and should not contain confidential information. 
+
+Please use plain typed text, avoiding formulae and other special characters. The abstract must be written in English. There is a limit of 2000 characters (spaces and line breaks included)}
+\newpage\fi
+}
+
+
+% B1 section a
+\newenvironment{b1-sec-a}{
+\ifercformatting@BOne
+    \section*{Section a: Extended Synopsis of the scientific proposal}
+    \instruction{The Extended Synopsis should give a concise presentation of the scientific proposal, with particular 
+    attention to the ground-breaking nature of the research project, which will allow evaluation panels to assess, 
+    in Step 1 of the evaluation, the feasibility of the outlined scientific approach. Describe the proposed work in the context of the state of the art of the field. It is important that the extended synopsis contains minimum information relevant to the evaluation criteria, since the Step 1 panel will have access only to part B1. 
+    References to literature should also be included. Please use a reference style that is commonly used in your discipline such as American Chemical Society (ACS) style, American Medical Association (AMA) style, Modern Language Association (MLA) style, etc. and that allows the evaluators to easily retrieve each reference.
+
+    Please respect the following formatting constraints: Times New Roman, Arial or similar, at least font size 11, margin sizes (2.0 cm side and 1.5 cm top and bottom), single line spacing.\vspace{0.5cm}\par 
+\noindent}
+\fi
+}
+
+% B1 section b
+\newenvironment{b1-sec-b}{
+\ifercformatting@BOne
+    \newpage
+    \section*{Section b: Curriculum vitae and Track Record}
+    \instruction{ Maximum 4 pages, you may modify the below template if necessary.}
+\fi
+}
+
+% B2 section a
+\newenvironment{b2-sec-a}{
+\ifercformatting@BTwo
+    \instruction{\textbf{Not evaluated in Step 1}
+
+    Sections (a) and (b) of Part B2 should not exceed 14 pages. References do not count towards the page limits. 
+
+
+    Please respect the following formatting constraints: Times New Roman, Arial or similar, at least font size 11, margins (2.0 cm side and 1.5 cm top and bottom), single line spacing. 
+    Do NOT split the sections, references and/or the appendix (Funding ID) and do NOT upload them as separate documents.
+
+
+    Instructions for completing Part B2 can be found in the ‘Information for Applicants to the Starting and Consolidator Grant 2025 Calls’.\par\vspace{0.5cm}}
+
+    \section*{Section a. State-of-the-art and objectives}
+\fi
+}
+
+% B2 section b
+\newenvironment{b2-sec-b}{
+\ifercformatting@BTwo
+    \section*{Section b. Methodology}
+\fi
+}
+
+% B2 Appendix funding
+\newenvironment{b2-app-funding}{
+\ifercformatting@BTwo
+    \newpage
+    \begin{center}
+        \large{\textbf{Appendix: All current grants and on-going / submitted grant applications of the PI}}\par
+        \large{\textbf{(Funding ID)}}\par
+    \instruction{\textbf{Mandatory Information} (does not count towards page limit)}
+    \end{center}
+    \instruction{In column: Relation to current ERC proposal, describe clearly any scientific overlap between your ERC application and the current research grant or on-going grant application.}
+\fi
+}
+
+% Tables in appendix
+\newcommand{\theadfst}[1]{\multicolumn{1}{| >{\centering\arraybackslash}p{0.12\textwidth} |}{\emph{#1}}}
+\newcommand{\thead}[1]{\multicolumn{1}{>{\centering\arraybackslash}p{0.12\textwidth} |}{\emph{#1}}}
+\newcommand{\theadlst}[1]{\multicolumn{1}{>{\centering\arraybackslash}X |}{\emph{#1}}}
+
+% \def\startfundingtable{
+%     \begin{tabularx}{\textwidth} { 
+%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+%      | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+%      | >{\raggedright\arraybackslash}X | }
+%     \hline
+%     \rowcolor{lightgray}
+%     \theadfst{Project Title} & \thead{Funding Source} & \thead{Amount (Euros)} & \thead{Period} & \thead{Role of PI} & \theadlst{Relation to current ERC proposal} \\
+%     \hline
+% }
+% \def\stopfundingtable{
+%     \hline
+%     \end{tabularx}
+% }
+\newenvironment{fundingtable}{
+    \vspace*{0.3cm}
+    \tabularx{\textwidth} { 
+     | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+     | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+     | >{\hsize=0.12\textwidth\raggedleft\arraybackslash}X 
+     | >{\hsize=0.12\textwidth\centering\arraybackslash}X 
+     | >{\hsize=0.12\textwidth\raggedright\arraybackslash}X 
+     | >{\raggedright\arraybackslash}X | }
+    \hline
+    \rowcolor{lightgray}
+    \theadfst{Project Title} & \thead{Funding Source} & \thead{Amount (Euros)} & \thead{Period} & \thead{Role of PI} & \theadlst{Relation to current ERC proposal} \\
+    \hline
+
+}{
+
+    \hline
+    \endtabularx
+    \vspace*{0.3cm}
+}
+
+
+
+
+\endinput
