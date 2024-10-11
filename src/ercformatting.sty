@@ -256,69 +256,74 @@ Please use plain typed text, avoiding formulae and other special characters. The
 }
 
 
-% B1 section a
-\newenvironment{b1-sec-a}{
-\ifercformatting@BOne
-    \pdfbookmark[1]{Section a: Extended Synopsis of the scientific proposal}{unnumbered}
-    \section*{Section a: Extended Synopsis of the scientific proposal}
-    \instruction{The Extended Synopsis should give a concise presentation of the scientific proposal, with particular 
-    attention to the ground-breaking nature of the research project, which will allow evaluation panels to assess, 
-    in Step 1 of the evaluation, the feasibility of the outlined scientific approach. Describe the proposed work in the context of the state of the art of the field. It is important that the extended synopsis contains minimum information relevant to the evaluation criteria, since the Step 1 panel will have access only to part B1. 
-    References to literature should also be included. Please use a reference style that is commonly used in your discipline such as American Chemical Society (ACS) style, American Medical Association (AMA) style, Modern Language Association (MLA) style, etc. and that allows the evaluators to easily retrieve each reference.
+% start section a in all cases
+\def\startsectiona{
+    \ifercformatting@BOne
+        \pdfbookmark[1]{Section a: Extended Synopsis of the scientific proposal}{unnumbered}
+        \section*{Section a: Extended Synopsis of the scientific proposal}
+        \instruction{The Extended Synopsis should give a concise presentation of the scientific proposal, with particular 
+        attention to the ground-breaking nature of the research project, which will allow evaluation panels to assess, 
+        in Step 1 of the evaluation, the feasibility of the outlined scientific approach. Describe the proposed work in the 
+        context of the state of the art of the field. It is important that the extended synopsis contains minimum information 
+        relevant to the evaluation criteria, since the Step 1 panel will have access only to part B1. 
+        References to literature should also be included. Please use a reference style that is commonly used in your discipline 
+        such as American Chemical Society (ACS) style, American Medical Association (AMA) style, Modern Language Association (MLA) 
+        style, etc. and that allows the evaluators to easily retrieve each reference.
 
-    Please respect the following formatting constraints: Times New Roman, Arial or similar, at least font size 11, margin sizes (2.0 cm side and 1.5 cm top and bottom), single line spacing.\vspace{0.5cm}\par 
-\noindent}
-\fi
+        Please respect the following formatting constraints: Times New Roman, Arial or similar, at least font size 11, margin sizes 
+        (2.0 cm side and 1.5 cm top and bottom), single line spacing.\vspace{0.5cm}\par 
+        \noindent}
+    \else \ifercformatting@BTwo
+        \instruction{\textbf{Not evaluated in Step 1}
+
+        Sections (a) and (b) of Part B2 should not exceed 14 pages. References do not count towards the page limits. 
+
+        Please respect the following formatting constraints: Times New Roman, Arial or similar, at least font size 11, 
+        margins (2.0 cm side and 1.5 cm top and bottom), single line spacing. 
+        Do NOT split the sections, references and/or the appendix (Funding ID) and do NOT upload them as separate documents.
+
+        Instructions for completing Part B2 can be found in the ‘Information for Applicants to the Starting and Consolidator 
+        Grant 2025 Calls’.\par\vspace{0.5cm}}
+        \pdfbookmark[1]{Section a. State-of-the-art and objectives}{unnumbered}
+        \section*{Section a. State-of-the-art and objectives}
+    \else 
+        \section*{Section a. - B1 and B2 combined}
+    \fi
+    \fi
 }
 
-% B1 section b
-\newenvironment{b1-sec-b}{
-\ifercformatting@BOne
-    \newpage
-    \pdfbookmark[1]{Section b: Curriculum vitae and Track Record}{unnumbered}
-    \section*{Section b: Curriculum vitae and Track Record}
-    \instruction{ Maximum 4 pages, you may modify the below template if necessary.}
-\fi
+% start section b in all cases
+\def\startsectionb{
+    \ifercformatting@BOne
+        \newpage
+        \pdfbookmark[1]{Section b: Curriculum vitae and Track Record}{unnumbered}
+        \section*{Section b: Curriculum vitae and Track Record}
+        \instruction{Maximum 4 pages, you may modify the below template if necessary.}
+    \else \ifercformatting@BTwo
+        \pdfbookmark[1]{Section b. Methodology}{unnumbered}
+        \section*{Section b. Methodology}
+    \else
+        \section*{Section b. - B1 and B2 combined}
+    \fi
+    \fi
 }
 
-% B2 section a
-\newenvironment{b2-sec-a}{
-\ifercformatting@BTwo
-    \instruction{\textbf{Not evaluated in Step 1}
-
-    Sections (a) and (b) of Part B2 should not exceed 14 pages. References do not count towards the page limits. 
-
-
-    Please respect the following formatting constraints: Times New Roman, Arial or similar, at least font size 11, margins (2.0 cm side and 1.5 cm top and bottom), single line spacing. 
-    Do NOT split the sections, references and/or the appendix (Funding ID) and do NOT upload them as separate documents.
-
-
-    Instructions for completing Part B2 can be found in the ‘Information for Applicants to the Starting and Consolidator Grant 2025 Calls’.\par\vspace{0.5cm}}
-
-    \pdfbookmark[1]{Section a. State-of-the-art and objectives}{unnumbered}
-    \section*{Section a. State-of-the-art and objectives}
-\fi
-}
-
-% B2 section b
-\newenvironment{b2-sec-b}{
-\ifercformatting@BTwo
-    \pdfbookmark[1]{Section b. Methodology}{unnumbered}
-    \section*{Section b. Methodology}
-\fi
-}
-
-% B2 Appendix funding
-\newenvironment{b2-app-funding}{
-\ifercformatting@BTwo
-    \newpage
-    \begin{center}
-        \large{\textbf{Appendix: All current grants and on-going / submitted grant applications of the PI}}\par
-        \large{\textbf{(Funding ID)}}\par
-    \instruction{\textbf{Mandatory Information} (does not count towards page limit)}
-    \end{center}
-    \instruction{In column: Relation to current ERC proposal, describe clearly any scientific overlap between your ERC application and the current research grant or on-going grant application.}
-\fi
+% start appendix
+\def\startappendix{
+    \ifercformatting@BOne
+        \section*{\textcolor{red}{Appendix not allowed}}
+    \else
+        \newpage
+        \begin{center}
+            \large{\textbf{Appendix: All current grants and on-going / submitted grant applications of the PI}}\par
+            \large{\textbf{(Funding ID)}}\par
+        \instruction{\textbf{Mandatory Information} (does not count towards page limit)}
+        \end{center}
+        \instruction{
+            In column: Relation to current ERC proposal, describe clearly any scientific overlap between your ERC application and the 
+            current research grant or on-going grant application.
+        }
+    \fi
 }
 
 % Tables in appendix

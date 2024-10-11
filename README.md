@@ -15,7 +15,7 @@ However, several key things have changed:
 Some advantages of this template:
 
 - Consistent formatting since everything is written in LaTeX
-- Allow to set font to `Adobe Times Roman` for more consistency with original template (use `times` option when loading `ercformatting` package)
+- Allow to set font to `Nimubs Roman` for more consistency with original template (use `roman` option when loading `ercformatting` package)
 - Add instructions of ERC template for guidance (to show, use `showinstructions` option when loading `ercformatting` package)
 
 Details can be found in the individual examples. 
