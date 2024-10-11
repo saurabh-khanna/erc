@@ -65,13 +65,13 @@
 \newif\ifercformatting@BTwo
 \newif\ifercformatting@BBoth
 \newif\ifercformatting@showinstructions
-\newif\ifercformatting@times
+\newif\ifercformatting@roman
 
 \DeclareOption{b1}{\ercformatting@BOnetrue\ercformatting@BTwofalse\ercformatting@BBothfalse}
 \DeclareOption{b2}{\ercformatting@BOnefalse\ercformatting@BTwotrue\ercformatting@BBothfalse}
 \DeclareOption{both}{\ercformatting@BOnefalse\ercformatting@BTwofalse\ercformatting@BBothtrue}
 \DeclareOption{showinstructions}{\ercformatting@showinstructionstrue}
-\DeclareOption{times}{\ercformatting@timestrue}
+\DeclareOption{roman}{\ercformatting@romantrue}
 
 \ProcessOptions\relax
 
@@ -128,8 +128,9 @@
 
 
 % FONT STUFF
-\ifercformatting@times
-    \RequirePackage{mathptmx}
+\ifercformatting@roman
+    \RequirePackage{tgtermes} % such that fonts are the same as MS word
+    \RequirePackage{newtxmath,newtxtext}
 \fi
 
 
